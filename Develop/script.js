@@ -4,6 +4,10 @@
 
 $(function () {
 
+  let saveButtons=$(".saveBtn");
+  let timeBlocks=$(".time-block")
+  let currentHour=dayjs().format('H')
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -12,7 +16,7 @@ $(function () {
   // useful when saving the description in local storage?
 
 
-    let saveButtons=$(".saveBtn");
+    
     for(let i =0; i<saveButtons.length;i++){
       saveButtons[i].addEventListener("click",function(){
         localStorage.setItem(this.parentElement.id,this.previousElementSibling.value);
@@ -25,8 +29,8 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-    let currentHour=dayjs().format('H')
-    let timeBlocks=$(".time-block")
+   
+    
     for(let i=0;i<timeBlocks.length;i++){
       let blockTime=(timeBlocks[i].id).split('hour-').join('').trim();
       if(+blockTime==currentHour)
@@ -41,5 +45,12 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
+  for(let i=0;i<timeBlocks.length;i++){
+    let textBlock=timeBlocks[i].children[1];
+    let blockId=timeBlocks[i].id;
+    if(localStorage.getItem(blockId)){
+      textBlock.textContent=localStorage.getItem(blockId);
+    }
+  }
   // TODO: Add code to display the current date in the header of the page.
 });
