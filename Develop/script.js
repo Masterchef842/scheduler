@@ -7,6 +7,7 @@ $(function () {
   let timeBlocks=$(".time-block");
   let currentHour=dayjs().format('H');
   let dateDiv=document.querySelector("#currentDay");
+  let todaysDate=dayjs().format('dddd, MMMM D')
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -53,7 +54,7 @@ $(function () {
     }
   }
   // TODO: Add code to display the current date in the header of the page.
-  dateDiv.innerHTML=dayjs().format('dddd, MMMM D')
+  dateDiv.innerHTML=todaysDate;
 });
 
 
